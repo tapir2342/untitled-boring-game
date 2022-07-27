@@ -1,0 +1,77 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "CanvasLayer",
+"class": "Defeat",
+"language": "GDScript",
+"path": "res://defeat.gd"
+}, {
+"base": "Node2D",
+"class": "Drill",
+"language": "GDScript",
+"path": "res://drill.gd"
+}, {
+"base": "Node2D",
+"class": "River",
+"language": "GDScript",
+"path": "res://river.gd"
+}, {
+"base": "Node",
+"class": "State",
+"language": "GDScript",
+"path": "res://state/state.gd"
+}, {
+"base": "Node",
+"class": "StateMachine",
+"language": "GDScript",
+"path": "res://state/state_machine.gd"
+} ]
+_global_script_class_icons={
+"Defeat": "",
+"Drill": "",
+"River": "",
+"State": "",
+"StateMachine": ""
+}
+
+[application]
+
+config/name="Untitled Boring Game"
+run/main_scene="res://main.tscn"
+config/icon="res://icon.png"
+
+[display]
+
+window/size/width=2048
+window/size/height=1200
+window/size/resizable=false
+window/dpi/allow_hidpi=true
+
+[input]
+
+drill_start={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777221,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+drill_toggle={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"
