@@ -33,13 +33,19 @@ _global_script_classes=[ {
 "class": "StateMachine",
 "language": "GDScript",
 "path": "res://state/state_machine.gd"
+}, {
+"base": "CanvasLayer",
+"class": "Victory",
+"language": "GDScript",
+"path": "res://victory.gd"
 } ]
 _global_script_class_icons={
 "Defeat": "",
 "Drill": "",
 "River": "",
 "State": "",
-"StateMachine": ""
+"StateMachine": "",
+"Victory": ""
 }
 
 [application]

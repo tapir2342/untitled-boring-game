@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://texture.png" type="Texture" id=1]
 [ext_resource path="res://drill.gd" type="Script" id=2]
@@ -15,20 +15,25 @@
 [ext_resource path="res://main.gd" type="Script" id=13]
 [ext_resource path="res://montserrat_regular_75.tres" type="DynamicFont" id=14]
 [ext_resource path="res://defeat.gd" type="Script" id=15]
+[ext_resource path="res://victory.gd" type="Script" id=16]
+[ext_resource path="res://montserrat_regular_25.tres" type="DynamicFont" id=17]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 1018.88, 10 )
+extents = Vector2( 1023.88, 10 )
 
 [sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 1018.88, 10 )
+extents = Vector2( 1024, 10 )
 
 [sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 67, 345.5 )
+extents = Vector2( 9.5, 344 )
 
 [sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 67, 345.313 )
+extents = Vector2( 9.5, 344 )
 
 [sub_resource type="CircleShape2D" id=4]
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 50, 53 )
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 458.5, 121.5 )
@@ -42,6 +47,7 @@ initial_state = NodePath("Init")
 
 [node name="Init" type="Node" parent="StateMachine"]
 script = ExtResource( 11 )
+victory_path = NodePath("../../Victory")
 defeat_path = NodePath("../../Defeat")
 
 [node name="WaitingToStart" type="Node" parent="StateMachine"]
@@ -52,6 +58,7 @@ script = ExtResource( 9 )
 
 [node name="Victory" type="Node" parent="StateMachine"]
 script = ExtResource( 10 )
+victory_path = NodePath("../../Victory")
 
 [node name="Defeat" type="Node" parent="StateMachine"]
 script = ExtResource( 7 )
@@ -61,24 +68,25 @@ defeat_path = NodePath("../../Defeat")
 
 [node name="Sprite" type="Sprite" parent="Ground"]
 modulate = Color( 0.368627, 0.235294, 0.137255, 1 )
-position = Vector2( 1019, 877.25 )
-scale = Vector2( 2040, 651.5 )
+position = Vector2( 1024, 875.75 )
+scale = Vector2( 2048, 648.5 )
 texture = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
-position = Vector2( 1019.13, 542 )
+position = Vector2( 1024.13, 542 )
+z_index = -200
 shape = SubResource( 2 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Ground"]
-position = Vector2( 1019.75, 1213 )
+position = Vector2( 1024, 1210 )
 shape = SubResource( 5 )
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Ground"]
-position = Vector2( -67, 877.5 )
+position = Vector2( -9.5, 876 )
 shape = SubResource( 6 )
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Ground"]
-position = Vector2( 2106, 877.688 )
+position = Vector2( 2057.5, 876 )
 shape = SubResource( 7 )
 
 [node name="Label2" type="Label" parent="Ground"]
@@ -96,19 +104,19 @@ position = Vector2( 255, 555 )
 script = ExtResource( 2 )
 
 [node name="Vehicle" type="Node2D" parent="Drill"]
+position = Vector2( -2, -61 )
 
 [node name="Sprite" type="Sprite" parent="Drill/Vehicle"]
 modulate = Color( 0.886275, 0.941176, 0.0980392, 1 )
-position = Vector2( 5.99997, -54 )
 scale = Vector2( 252, 114.906 )
 texture = ExtResource( 1 )
 
 [node name="Label" type="Label" parent="Drill/Vehicle"]
 modulate = Color( 0.247059, 0.227451, 0.278431, 1 )
-margin_left = -70.0
-margin_top = -86.0
-margin_right = 80.0
-margin_bottom = -24.0
+margin_left = -73.0
+margin_top = -33.0
+margin_right = 77.0
+margin_bottom = 29.0
 rect_pivot_offset = Vector2( 689, -62 )
 theme = ExtResource( 12 )
 text = "DRILL"
@@ -133,8 +141,8 @@ offset = Vector2( -40, 0 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Drill/Tip"]
 shape = SubResource( 4 )
 
-[node name="Target" type="Node2D" parent="." groups=["Target"]]
-position = Vector2( 1704, 503 )
+[node name="Target" type="Area2D" parent="." groups=["Target"]]
+position = Vector2( 1704, 502 )
 
 [node name="Sprite" type="Sprite" parent="Target"]
 modulate = Color( 0.941176, 0.266667, 0.0980392, 1 )
@@ -142,11 +150,18 @@ scale = Vector2( 100, 100 )
 texture = ExtResource( 1 )
 
 [node name="Label" type="Label" parent="Target"]
-margin_left = -24.0
-margin_top = -80.0
-margin_right = 16.0
-margin_bottom = -66.0
+margin_left = -39.0
+margin_top = -20.0
+margin_right = 124.0
+margin_bottom = 42.0
+theme = ExtResource( 12 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 17 )
 text = "Target"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Target"]
+position = Vector2( 0, 3 )
+shape = SubResource( 8 )
 
 [node name="River" type="Area2D" parent="." groups=["Obstacle"]]
 
@@ -156,7 +171,7 @@ shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="River"]
 modulate = Color( 0.0627451, 0.529412, 0.921569, 1 )
-position = Vector2( 1037.5, 674.188 )
+position = Vector2( 1037.5, 673.188 )
 scale = Vector2( 921, 243.625 )
 texture = ExtResource( 1 )
 
@@ -174,6 +189,7 @@ text = "River"
 script = ExtResource( 15 )
 
 [node name="Panel" type="Panel" parent="Defeat"]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -190,3 +206,25 @@ margin_top = 89.5
 margin_right = 128.5
 margin_bottom = 103.5
 text = "YOU LOST LOL!!"
+
+[node name="Victory" type="CanvasLayer" parent="."]
+script = ExtResource( 16 )
+
+[node name="Panel" type="Panel" parent="Victory"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -489.5
+margin_top = -475.5
+margin_right = 489.5
+margin_bottom = 475.5
+theme = ExtResource( 12 )
+
+[node name="Label" type="Label" parent="Victory/Panel"]
+margin_left = 88.5
+margin_top = 89.5
+margin_right = 128.5
+margin_bottom = 103.5
+text = "YOU HAVE WON. WOO!"
