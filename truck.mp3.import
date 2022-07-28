@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/truck.mp3-c966d7d405bb5a24e4c77a2d6a235507.mp3str"
+
+[deps]
+
+source_file="res://truck.mp3"
+dest_files=[ "res://.import/truck.mp3-c966d7d405bb5a24e4c77a2d6a235507.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

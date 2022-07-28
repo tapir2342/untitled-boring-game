@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/truck.wav-56de4bc6cc8d5c1923c5a99a75e380f5.sample"
+
+[deps]
+
+source_file="res://truck.wav"
+dest_files=[ "res://.import/truck.wav-56de4bc6cc8d5c1923c5a99a75e380f5.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0

@@ -6,6 +6,7 @@ var drill: Drill
 
 func enter(_msg := {}) -> void:
 	drill = owner.drill as Drill
+	drill.hide_drill_controls()
 	drill.start()
 	drill.connect("hit_target", self, "_on_hit_target")
 	drill.connect("hit_obstacle", self, "_on_hit_obstacle")

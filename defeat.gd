@@ -4,6 +4,7 @@ extends CanvasLayer
 
 func show():
 	$Panel.visible = true
+	$AudioStreamPlayer.play()
 
 
 func hide():

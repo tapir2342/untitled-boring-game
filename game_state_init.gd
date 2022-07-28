@@ -10,4 +10,4 @@ onready var _defeat = get_node(defeat_path) as Defeat
 func enter(_msg := {}) -> void:
 	_victory.hide()
 	_defeat.hide()
-	state_machine.transition_to("WaitingToStart")
+	state_machine.transition_to("Driving")

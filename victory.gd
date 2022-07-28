@@ -3,8 +3,10 @@ extends CanvasLayer
 
 
 func show():
-	$Panel.visible = true
+	$Control.visible = true
+	$AudioStreamPlayer.play()
+	$Panel/Particles2D.emitting = true
 
 
 func hide():
-	$Panel.visible = false
+	$Control.visible = false
