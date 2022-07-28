@@ -1,20 +1,20 @@
 extends State
 
 
-var drill: Drill
+var _drill: Drill
 
 
 func enter(_msg := {}) -> void:
-	drill = owner.drill as Drill
-	drill.hide_drill_controls()
-	drill.start()
-	drill.connect("hit_target", self, "_on_hit_target")
-	drill.connect("hit_obstacle", self, "_on_hit_obstacle")
+	_drill = get_node("/root/Main/Drill") as Drill
+	_drill.hide_drill_controls()
+	_drill.start()
+	_drill.connect("hit_target", self, "_on_hit_target")
+	_drill.connect("hit_obstacle", self, "_on_hit_obstacle")
 
 
 func handle_input(event: InputEvent) -> void:
 	if event.is_action_pressed("drill_toggle"):
-		drill.toggle()
+		_drill.toggle()
 
 
 func _on_hit_target(area: Area2D) -> void:
@@ -26,4 +26,4 @@ func _on_hit_obstacle(area: Area2D) -> void:
 
 
 func exit() -> void:
-	drill.stop()
+	_drill.stop()

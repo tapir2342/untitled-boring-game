@@ -1,0 +1,125 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://drill.gd" type="Script" id=1]
+[ext_resource path="res://drill_tip.gd" type="Script" id=2]
+[ext_resource path="res://stick.png" type="Texture" id=3]
+[ext_resource path="res://drilltip2.png" type="Texture" id=4]
+[ext_resource path="res://Engine 2 Start.wav" type="AudioStream" id=5]
+[ext_resource path="res://Engine 2 Stop.wav" type="AudioStream" id=6]
+[ext_resource path="res://Engine 2 Loop.wav" type="AudioStream" id=7]
+[ext_resource path="res://on_screen_controls.gd" type="Script" id=8]
+[ext_resource path="res://truck.wav" type="AudioStream" id=9]
+[ext_resource path="res://ground_remains.png" type="Texture" id=10]
+[ext_resource path="res://flatDark24.png" type="Texture" id=11]
+[ext_resource path="res://robot_yellowDrive1.png" type="Texture" id=12]
+[ext_resource path="res://flatDark23.png" type="Texture" id=13]
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 91.5, 33 )
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 7.07107
+
+[sub_resource type="ParticlesMaterial" id=17]
+trail_divisor = 10
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale_random = 0.3
+color = Color( 0.156863, 0.141176, 0.101961, 1 )
+hue_variation = 0.1
+
+[sub_resource type="StreamTexture" id=12]
+flags = 4
+load_path = "res://.import/flatDark24.png-8e2897587c6e9a88ce0e5434d045300a.stex"
+
+[node name="Drill" type="KinematicBody2D"]
+position = Vector2( 255, 555 )
+collision_mask = 12
+script = ExtResource( 1 )
+cable_color = Color( 1, 0.8, 0, 1 )
+speed = 100
+funnel_color = Color( 0.156863, 0.141176, 0.101961, 1 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+volume_db = -30.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -2.5, -84 )
+shape = SubResource( 10 )
+
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 0.886275, 0.941176, 0.0980392, 1 )
+position = Vector2( -2, -78 )
+z_index = 10
+texture = ExtResource( 12 )
+
+[node name="Tip" type="Area2D" parent="."]
+visible = false
+position = Vector2( 0, -9 )
+collision_layer = 2
+collision_mask = 12
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="Tip"]
+rotation = 3.14159
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 4 )
+
+[node name="Stick" type="Node2D" parent="Tip"]
+visible = false
+rotation = -2.0944
+
+[node name="Sprite" type="Sprite" parent="Tip/Stick"]
+scale = Vector2( 0.19, 0.2 )
+texture = ExtResource( 3 )
+offset = Vector2( -40, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tip"]
+position = Vector2( 0, -16 )
+shape = SubResource( 4 )
+
+[node name="Particles2D" type="Particles2D" parent="Tip"]
+visible = false
+position = Vector2( 0, -18 )
+z_index = -1
+amount = 100
+lifetime = 100.0
+local_coords = false
+process_material = SubResource( 17 )
+texture = ExtResource( 10 )
+
+[node name="Start" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+
+[node name="Loop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+
+[node name="Stop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+
+[node name="OnScreenControls" type="Node2D" parent="."]
+position = Vector2( -255, -555 )
+script = ExtResource( 8 )
+
+[node name="DriveLeft" type="Sprite" parent="OnScreenControls"]
+position = Vector2( 105, 470 )
+texture = ExtResource( 13 )
+
+[node name="DriveLeftTween" type="Tween" parent="OnScreenControls"]
+
+[node name="DriveRight" type="Sprite" parent="OnScreenControls"]
+position = Vector2( 404, 466 )
+texture = ExtResource( 11 )
+
+[node name="DriveRightTween" type="Tween" parent="OnScreenControls"]
+
+[node name="Drill" type="Sprite" parent="OnScreenControls"]
+visible = false
+position = Vector2( 256, 651 )
+rotation = 1.5708
+texture = SubResource( 12 )
+
+[node name="DrillTween" type="Tween" parent="OnScreenControls"]
