@@ -4,6 +4,7 @@
 [ext_resource path="res://montserrat_regular_50.tres" type="DynamicFont" id=2]
 [ext_resource path="res://montserrat_bold_50.tres" type="DynamicFont" id=3]
 [ext_resource path="res://blur.tscn" type="PackedScene" id=4]
+[ext_resource path="res://river.png" type="Texture" id=5]
 [ext_resource path="res://state/state_machine.gd" type="Script" id=6]
 [ext_resource path="res://game_state_defeat.gd" type="Script" id=7]
 [ext_resource path="res://game_state_driving.gd" type="Script" id=8]
@@ -59,9 +60,6 @@ extents = Vector2( 1024, 267.5 )
 [sub_resource type="RectangleShape2D" id=11]
 extents = Vector2( 51.4401, 41.5 )
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 458.5, 121.5 )
-
 [sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 50, 50 )
 
@@ -114,6 +112,7 @@ shape = SubResource( 7 )
 script = ExtResource( 16 )
 
 [node name="Control" type="Control" parent="Victory"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 12 )
@@ -174,6 +173,7 @@ stream = ExtResource( 22 )
 script = ExtResource( 15 )
 
 [node name="Control" type="Control" parent="Defeat"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 12 )
@@ -244,6 +244,10 @@ position = Vector2( 1024, 267.5 )
 z_index = -200
 shape = SubResource( 13 )
 
+[node name="River" type="Sprite" parent="Level/Ground/CollisionShape2D2"]
+position = Vector2( -74, 648.5 )
+texture = ExtResource( 5 )
+
 [node name="Label2" type="Label" parent="Level/Ground"]
 modulate = Color( 0.705882, 0.666667, 0.6, 1 )
 margin_left = 56.0
@@ -272,28 +276,28 @@ position = Vector2( 1740, 170 )
 texture = ExtResource( 30 )
 
 [node name="River" type="Area2D" parent="Level" groups=["Obstacle"]]
+position = Vector2( -2, -1 )
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/River"]
-position = Vector2( 1037.5, 674.5 )
-shape = SubResource( 1 )
-
-[node name="Sprite" type="Sprite" parent="Level/River"]
+[node name="River2" type="Sprite" parent="Level/River"]
 modulate = Color( 0, 0.741176, 0.643137, 1 )
-position = Vector2( 1037.5, 673.188 )
-scale = Vector2( 921, 243.625 )
-texture = ExtResource( 1 )
+position = Vector2( 1061, 678 )
+scale = Vector2( 1.4152, 1.79032 )
+texture = ExtResource( 5 )
 
 [node name="Label" type="Label" parent="Level/River"]
 modulate = Color( 1, 1, 1, 0.737255 )
-margin_left = 937.0
-margin_top = 637.0
-margin_right = 1127.0
-margin_bottom = 729.0
+margin_left = 975.0
+margin_top = 619.0
+margin_right = 1165.0
+margin_bottom = 711.0
 theme = ExtResource( 12 )
 custom_fonts/font = ExtResource( 14 )
 text = "River"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Level/River"]
+polygon = PoolVector2Array( 581, 559, 586, 658, 686, 757, 754, 753, 855, 721, 1102, 770, 1415, 789, 1465, 821, 1546, 762, 1545, 618, 1470, 535 )
 
 [node name="Target" type="Area2D" parent="Level" groups=["Target"]]
 position = Vector2( 1704, 502 )
