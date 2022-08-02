@@ -4,14 +4,14 @@ on:
     branches:
       - main
 env:
-  GODOT_VERSION: 3.4.5
+  GODOT_VERSION: 3.4.4
 
 jobs:
   export-web:
     name: Web Export
     runs-on: ubuntu-latest
     container:
-      image: barichello/godot-ci:latest
+      image: tapir2342/godot-builder:latest
     steps:
       - name: Set NOW
         run: echo "NOW=$(date +'%Y-%m-%d_%H-%M')" >> $GITHUB_ENV
