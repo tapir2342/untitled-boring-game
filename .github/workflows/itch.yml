@@ -4,7 +4,7 @@ on:
     branches:
       - main
 env:
-  GODOT_VERSION: 3.4.4
+  GODOT_VERSION: 3.5
 
 jobs:
   export-web:
@@ -33,7 +33,7 @@ jobs:
       - name: Zip Folder
         run: zip -r itch.zip build/web
       - name: Deploy to itch.io
-        uses: josephbmanley/butler-publish-itchio-action@master
+        uses: josephbmanley/butler-publish-itchio-action
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
           CHANNEL: HTML
